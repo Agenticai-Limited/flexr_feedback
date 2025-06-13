@@ -9,8 +9,9 @@ import {
   LoginErrorResponse,
 } from "../types";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const api: AxiosInstance = axios.create({
-  baseURL: "http://localhost:8001", // Your backend address
+  baseURL: BASE_URL, // Your backend address
   timeout: 10000,
   headers: {
     Accept: "application/json",
@@ -108,46 +109,6 @@ export const authAPI = {
     }
   },
 };
-
-// export const authAPI = {
-//   login: async (username: string, password: string): Promise<Token> => {
-//     const params = new URLSearchParams();
-//     params.append('username', username);
-//     params.append('password', password);
-
-//     try {
-//       console.log('Request params:', params.toString()); // 打印请求参数
-
-//       const response: AxiosResponse<Token> = await api.post('/api/v1/login', params, {
-//         headers: {
-//           'Content-Type': 'application/x-www-form-urlencoded',
-//           'Accept': 'application/json',
-//         },
-//         validateStatus: function (status) {
-//           return true; // 不抛出错误，让我们能看到错误响应的内容
-//         },
-//       });
-
-//       console.log('Response status:', response.status);
-//       console.log('Response headers:', response.headers);
-//       console.log('Response data:', response.data);
-
-//       if (!response.data && response.status !== 200) {
-//         throw new Error(`Login failed: ${response.status} ${response.statusText}`);
-//       }
-
-//       return response.data;
-//     } catch (error) {
-//       console.error('Login error:', error);
-//       if (axios.isAxiosError(error)) {
-//         console.error('Response data:', error.response?.data);
-//         console.error('Response status:', error.response?.status);
-//         console.error('Response headers:', error.response?.headers);
-//       }
-//       throw error;
-//     }
-//   },
-// };
 
 // Feedback API
 export const feedbackAPI = {
